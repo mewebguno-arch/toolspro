@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@theme {
+  --font-poppins: "Poppins", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-text-base: var(--text-base);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-success: var(--success);
+}
+
+:root {
+  --background: #F8F9FF;
+  --surface: #FFFFFF;
+  --primary: #6C63FF;
+  --secondary: #FF6584;
+  --text-base: #1A1A2E;
+  --muted: #6B7280;
+  --border: #E5E7EB;
+  --success: #10B981;
+}
+
+.dark {
+  --background: #0F0F1A;
+  --surface: #1A1A2E;
+  --primary: #7C74FF;
+  --secondary: #FF7096;
+  --text-base: #F1F1FF;
+  --muted: #9CA3AF;
+  --border: #2D2D45;
+  --success: #10B981;
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--text-base);
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Custom styled scrollbars */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(108, 99, 255, 0.2);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(108, 99, 255, 0.4);
+  }
+}
+
+/* Custom Keyframe Animations */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Frosted Glass Core Classes */
+.glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.dark .glass {
+  background: rgba(26, 26, 46, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(45, 45, 69, 0.5);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+}
+
+.dark .glass-card {
+  background: rgba(26, 26, 46, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(45, 45, 69, 0.52);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #6C63FF, #FF6584, #10B981, #6C63FF);
+  background-size: 200% 200%;
+  animation: gradient-shift 10s ease infinite;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #6C63FF, #FF6584);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animation utility classes */
+.animate-gradient-shift {
+  background-size: 400% 400%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.animate-float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float 4.5s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Syntax Highlighting for JSON formatter */
+.json-key { color: var(--primary); font-weight: 500; }
+.json-string { color: #10B981; }
+.json-number { color: #F59E0B; }
+.json-boolean { color: #8B5CF6; }
+.json-null { color: #EF4444; }

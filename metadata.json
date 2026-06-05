@@ -1,0 +1,8 @@
+{
+  "name": "ToolKit Pro",
+  "description": "A modern collection of 10 fully client-side utility tools for PDF merging, image compression, QR generation, password generation, and more.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
