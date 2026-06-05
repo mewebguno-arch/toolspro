@@ -17,36 +17,36 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           <div className="flex gap-4 items-start">
-            <div className="p-3 rounded-2xl bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 text-primary dark:text-[#9F99FF] flex-shrink-0">
-              <Shield className="w-6 h-6 text-primary dark:text-[#9F99FF]" />
+            <div className="p-3 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100/80 dark:border-indigo-900/40 text-indigo-600 dark:text-indigo-400 flex-shrink-0">
+              <Shield className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
             </div>
             <div>
               <h4 className="font-poppins font-semibold text-text-base dark:text-white text-base mb-1.5">100% Secure & On-Device</h4>
-              <p className="font-inter text-sm text-muted dark:text-gray-400 leading-relaxed">
+              <p className="font-inter text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                 Your documents, photographs, passwords, and records never cross the network. All compilation is completed locally.
               </p>
             </div>
           </div>
 
           <div className="flex gap-4 items-start">
-            <div className="p-3 rounded-2xl bg-secondary/10 dark:bg-secondary/20 border border-secondary/20 dark:border-secondary/30 text-secondary dark:text-[#FF9EB5] flex-shrink-0">
-              <Cpu className="w-6 h-6 text-secondary dark:text-[#FF9EB5]" />
+            <div className="p-3 rounded-2xl bg-rose-50 dark:bg-rose-950/40 border border-rose-100/80 dark:border-rose-900/40 text-rose-600 dark:text-rose-400 flex-shrink-0">
+              <Cpu className="w-6 h-6 text-rose-600 dark:text-rose-400" />
             </div>
             <div>
               <h4 className="font-poppins font-semibold text-text-base dark:text-white text-base mb-1.5">Hardware Accelerated</h4>
-              <p className="font-inter text-sm text-muted dark:text-gray-400 leading-relaxed">
+              <p className="font-inter text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                 Leverages modern browser multithreading via Web Workers and local rendering pipelines for instant results.
               </p>
             </div>
           </div>
 
           <div className="flex gap-4 items-start">
-            <div className="p-3 rounded-2xl bg-teal-500/10 dark:bg-teal-500/20 border border-teal-500/20 dark:border-teal-500/30 text-teal-600 dark:text-teal-400 flex-shrink-0">
-              <RefreshCw className="w-6 h-6 text-teal-600 dark:text-teal-400" />
+            <div className="p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100/80 dark:border-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex-shrink-0">
+              <RefreshCw className="w-6 h-6 text-emerald-600 dark:text-[#34D399]" />
             </div>
             <div>
               <h4 className="font-poppins font-semibold text-text-base dark:text-white text-base mb-1.5">No Subscriptions or Installs</h4>
-              <p className="font-inter text-sm text-muted dark:text-gray-400 leading-relaxed">
+              <p className="font-inter text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                 Enjoy unlimited bulk processing, merging, formatting, and encoding for free, completely without sign-ups.
               </p>
             </div>
@@ -64,15 +64,15 @@ export const Footer: React.FC = () => {
             <Link 
               to="/" 
               onClick={handleScrollToTop}
-              className="inline-flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-primary rounded-lg"
+              className="inline-flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg"
               aria-label="ToolKit Pro brand logo redirect"
             >
-              <Zap className="w-6 h-6 text-primary dark:text-[#7C74FF] fill-primary dark:fill-[#7C74FF]" />
-              <span className="font-poppins font-bold text-xl tracking-tight bg-gradient-to-r from-primary to-secondary dark:from-[#7C74FF] dark:to-[#FF7096] bg-clip-text text-transparent">
+              <Zap className="w-6 h-6 text-indigo-600 dark:text-indigo-400 fill-indigo-600/20 dark:fill-indigo-400/20 animate-pulse" />
+              <span className="font-poppins font-bold text-xl tracking-tight bg-gradient-to-r from-indigo-600 to-rose-500 dark:from-indigo-400 dark:to-rose-400 bg-clip-text text-transparent">
                 ToolKit Pro
               </span>
             </Link>
-            <p className="font-inter text-sm text-muted dark:text-gray-400 max-w-sm leading-relaxed">
+            <p className="font-inter text-sm text-slate-600 dark:text-slate-300 max-w-sm leading-relaxed">
               The premier client-side toolset designed with high performance, visual polish, and private execution.
             </p>
           </div>
@@ -101,7 +101,7 @@ export const Footer: React.FC = () => {
                 href="https://github.com" 
                 target="_blank" 
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-background dark:bg-[#0F0F1A] border border-border dark:border-[#2D2D45] hover:border-primary dark:hover:border-[#7C74FF]/50 text-muted dark:text-gray-400 hover:text-primary dark:hover:text-white flex items-center justify-center transition-all cursor-pointer shadow"
+                className="w-10 h-10 rounded-xl bg-background dark:bg-[#0F0F1A] border border-border dark:border-[#2D2D45] hover:border-indigo-500 dark:hover:border-indigo-400 text-muted dark:text-gray-400 hover:text-primary dark:hover:text-white flex items-center justify-center transition-all cursor-pointer shadow"
                 aria-label="ToolKit Pro on GitHub"
               >
                 <Github className="w-5 h-5" />
@@ -119,7 +119,7 @@ export const Footer: React.FC = () => {
         <div className="mt-12 pt-8 border-t border-border/60 dark:border-[#2D2D45]/45 text-center flex flex-col sm:flex-row items-center justify-between gap-4 font-inter text-xs text-muted dark:text-gray-500">
           <p>© {currentYear} ToolKit Pro · All rights reserved.</p>
           <p className="flex items-center gap-1">
-            Built with ❤️ using <span className="text-secondary dark:text-[#FF7096] font-semibold">React + TypeScript</span>
+            Built with ❤️ using <span className="text-rose-500 dark:text-rose-400 font-semibold">React + TypeScript</span>
           </p>
         </div>
       </div>

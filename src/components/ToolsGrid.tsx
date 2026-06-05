@@ -40,8 +40,8 @@ export const ToolsGrid: React.FC = () => {
       
       {/* Title & Decorative Header */}
       <div className="text-center max-w-2xl mx-auto mb-14">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary/10 dark:bg-[#7C74FF]/10 text-primary dark:text-[#7C74FF] rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
-          <Sparkles className="w-3.5 h-3.5 text-primary dark:text-[#7C74FF] shrink-0" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50/90 dark:bg-indigo-950/45 border border-indigo-200/50 dark:border-indigo-800/40 text-indigo-600 dark:text-indigo-300 rounded-full text-xs font-semibold uppercase tracking-wider mb-3 shadow-sm">
+          <Sparkles className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400 shrink-0" />
           Pro-Level Tools suite
         </div>
         <h2 className="font-poppins font-bold text-3xl md:text-4xl text-text-base tracking-tight mb-4 relative inline-block">

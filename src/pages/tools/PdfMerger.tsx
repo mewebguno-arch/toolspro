@@ -128,8 +128,8 @@ export const PdfMerger: React.FC = () => {
           onClick={() => fileInputRef.current?.click()}
           className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all flex flex-col items-center justify-center gap-3 select-none ${
             isDragging
-              ? 'border-primary bg-primary/5 active:scale-98'
-              : 'border-border dark:border-[#2D2D45] hover:border-primary/50 dark:hover:border-[#7C74FF]/50 hover:bg-muted/5'
+              ? 'border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/10 active:scale-98'
+              : 'border-border dark:border-[#2D2D45] hover:border-indigo-500/50 dark:hover:border-indigo-400/50 hover:bg-slate-50 dark:hover:bg-indigo-950/5'
           }`}
         >
           <input
@@ -140,8 +140,8 @@ export const PdfMerger: React.FC = () => {
             accept=".pdf"
             className="hidden"
           />
-          <div className="p-3.5 bg-primary/10 dark:bg-[#7C74FF]/10 text-primary dark:text-[#7C74FF] rounded-full">
-            <Upload className="w-8 h-8" />
+          <div className="w-14 h-14 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100/80 dark:border-indigo-900/40 text-indigo-600 dark:text-indigo-400 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm mx-auto">
+            <Upload className="w-6 h-6 stroke-[2.25]" />
           </div>
           <div>
             <p className="font-poppins font-semibold text-text-base">Drag & drop files here, or click to choose</p>

@@ -80,9 +80,9 @@ export const Hero: React.FC = () => {
           {/* Badge */}
           <motion.div 
             variants={itemVariants}
-            className="inline-flex items-center gap-1.5 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 px-3.5 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wider uppercase text-primary dark:text-[#9F99FF] font-poppins backdrop-blur-sm"
+            className="inline-flex items-center gap-1.5 bg-indigo-50/90 dark:bg-indigo-950/45 border border-indigo-200/50 dark:border-indigo-800/40 px-3.5 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wider uppercase text-indigo-600 dark:text-indigo-300 font-poppins backdrop-blur-sm shadow-sm"
           >
-            <Sparkles className="w-4 h-4 text-primary dark:text-[#9F99FF] shrink-0" />
+            <Sparkles className="w-4 h-4 text-indigo-500 dark:text-indigo-400 shrink-0" />
             100% Client-Side Private Processing
           </motion.div>
 

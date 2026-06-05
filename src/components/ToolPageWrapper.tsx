@@ -1,6 +1,20 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Home, ChevronRight, ShieldCheck } from 'lucide-react';
+import { 
+  ArrowLeft, 
+  Home, 
+  ChevronRight, 
+  FileStack,
+  FileImage,
+  Images,
+  QrCode,
+  KeyRound,
+  FileText,
+  Braces,
+  Binary,
+  Palette,
+  Type
+} from 'lucide-react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
@@ -11,6 +25,30 @@ interface ToolPageWrapperProps {
   children: React.ReactNode;
 }
 
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  FileStack,
+  FileImage,
+  Images,
+  QrCode,
+  KeyRound,
+  FileText,
+  Braces,
+  Binary,
+  Palette,
+  Type,
+  // Support both emoji fallbacks and the current names
+  '🥞': FileStack,
+  '🗜️': FileImage,
+  '🖼️': Images,
+  '🔳': QrCode,
+  '🔑': KeyRound,
+  '📝': FileText,
+  '🔮': Braces,
+  '🧬': Binary,
+  '🎨': Palette,
+  '🔤': Type
+};
+
 export const ToolPageWrapper: React.FC<ToolPageWrapperProps> = ({
   title,
   icon,
@@ -18,6 +56,7 @@ export const ToolPageWrapper: React.FC<ToolPageWrapperProps> = ({
   children
 }) => {
   const navigate = useNavigate();
+  const IconComponent = iconMap[icon] || FileImage;
 
   const handleGoBack = () => {
     // Navigate back to the tools grid anchor
@@ -66,19 +105,13 @@ export const ToolPageWrapper: React.FC<ToolPageWrapperProps> = ({
         {/* Intro Banner */}
         <div className="glass-card rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="flex gap-4 items-center">
-            <div className="font-sans text-3xl sm:text-4xl p-2.5 bg-primary/5 rounded-2xl">
-              {icon}
+            <div className="p-3 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100/80 dark:border-indigo-900/40 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
+              <IconComponent className="w-8 h-8 stroke-[2.2]" />
             </div>
             <div>
               <h1 className="font-poppins font-bold text-2xl text-text-base tracking-tight mb-1">{title}</h1>
               <p className="font-inter text-sm text-muted dark:text-gray-400 max-w-xl leading-relaxed">{description}</p>
             </div>
-          </div>
-          
-          {/* On-device Security Stamp */}
-          <div className="inline-flex items-center gap-2 border border-emerald-500/20 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400 py-1.5 px-3 rounded-xl text-xs font-semibold uppercase tracking-wider whitespace-nowrap self-stretch sm:self-auto justify-center">
-            <ShieldCheck className="w-4 h-4 shrink-0 text-emerald-500" />
-            Local Sandbox Mode
           </div>
         </div>
 

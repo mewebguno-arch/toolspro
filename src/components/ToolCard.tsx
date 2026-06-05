@@ -2,12 +2,37 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ToolConfig } from '../types';
-import { ArrowUpRight } from 'lucide-react';
+import { 
+  ArrowUpRight,
+  FileStack,
+  FileImage,
+  Images,
+  QrCode,
+  KeyRound,
+  FileText,
+  Braces,
+  Binary,
+  Palette,
+  Type
+} from 'lucide-react';
 
 interface ToolCardProps {
   tool: ToolConfig;
   index: number;
 }
+
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  FileStack,
+  FileImage,
+  Images,
+  QrCode,
+  KeyRound,
+  FileText,
+  Braces,
+  Binary,
+  Palette,
+  Type
+};
 
 // Parses string like "from-[#FF5E62] to-[#FF9966]" into standard background image CSS rule
 const getGradientStyle = (gradientStr: string) => {
@@ -27,6 +52,8 @@ const getGradientStyle = (gradientStr: string) => {
 };
 
 export const ToolCard: React.FC<ToolCardProps> = ({ tool, index }) => {
+  const IconComponent = iconMap[tool.icon] || FileImage;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -52,12 +79,12 @@ export const ToolCard: React.FC<ToolCardProps> = ({ tool, index }) => {
       />
 
       <div>
-        {/* Large Emoji Banner */}
+        {/* Large Vector Icon Banner */}
         <div 
           style={getGradientStyle(tool.gradient)}
-          className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shadow-md mb-5 text-white flex-shrink-0"
+          className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-md mb-5 text-white flex-shrink-0"
         >
-          {tool.icon}
+          <IconComponent className="w-6 h-6 text-white stroke-[2.25]" />
         </div>
 
         {/* Title */}
