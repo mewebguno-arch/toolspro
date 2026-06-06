@@ -206,7 +206,7 @@ export const ColorPicker: React.FC = () => {
 
         {/* Right Side: WCAG AA/AAA audit dashboard (5 cols) */}
         <div className="md:col-span-12 lg:col-span-5 space-y-6">
-          <div className="bg-surface dark:bg-[#1A1A2E] border border-border dark:border-[#2D2D45]/60 rounded-2xl p-6 shadow-sm transition-all duration-300">
+          <div className="bg-surface dark:bg-[#1A1A2E] border border-border dark:border-[#2D2D45]/60 rounded-2xl p-6 my-12 shadow-sm transition-all duration-300">
             
             <h3 className="font-poppins font-bold text-xs uppercase tracking-widest text-primary mb-4 pb-2 border-b border-border dark:border-[#2D2D45]/40 flex items-center gap-1">
               <Sparkles className="w-4 h-4 text-amber-500 fill-amber-500" /> WCAG Contrast Audit

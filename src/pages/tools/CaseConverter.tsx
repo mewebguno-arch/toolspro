@@ -54,15 +54,15 @@ export const CaseConverter: React.FC = () => {
   }, [text]);
 
   const buttons = [
-    { label: 'UPPERCASE', fn: toUpperCase, color: 'bg-primary hover:bg-opacity-90 text-white' },
-    { label: 'lowercase', fn: toLowerCase, color: 'bg-[#FF6584] hover:bg-opacity-90 text-white' },
-    { label: 'Title Case', fn: toTitleCase, color: 'bg-indigo-500 hover:bg-opacity-90 text-white' },
-    { label: 'Sentence case', fn: toSentenceCase, color: 'bg-emerald-500 hover:bg-opacity-90 text-white' },
-    { label: 'camelCase', fn: toCamelCase, color: 'bg-teal-500 hover:bg-opacity-90 text-white' },
-    { label: 'PascalCase', fn: toPascalCase, color: 'bg-cyan-500 hover:bg-opacity-90 text-white' },
-    { label: 'snake_case', fn: toSnakeCase, color: 'bg-amber-500 hover:bg-opacity-90 text-white' },
-    { label: 'kebab-case', fn: toKebabCase, color: 'bg-dark-light hover:bg-[#FF7096] bg-[#2193b0] text-white' },
-    { label: 'dot.case', fn: toDotCase, color: 'bg-sunset-orange bg-[#753a88] text-white' }
+    { label: 'UPPERCASE', fn: toUpperCase, color: 'bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/40 hover:bg-indigo-100 dark:hover:bg-indigo-950/60' },
+    { label: 'lowercase', fn: toLowerCase, color: 'bg-pink-50 dark:bg-pink-950/40 text-pink-600 dark:text-pink-400 border border-pink-100 dark:border-pink-900/40 hover:bg-pink-100 dark:hover:bg-pink-950/60' },
+    { label: 'Title Case', fn: toTitleCase, color: 'bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-900/40 hover:bg-purple-100 dark:hover:bg-purple-950/60' },
+    { label: 'Sentence case', fn: toSentenceCase, color: 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/40 hover:bg-emerald-100 dark:hover:bg-emerald-950/60' },
+    { label: 'camelCase', fn: toCamelCase, color: 'bg-teal-50 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 border border-teal-100 dark:border-teal-900/40 hover:bg-teal-100 dark:hover:bg-teal-950/60' },
+    { label: 'PascalCase', fn: toPascalCase, color: 'bg-cyan-50 dark:bg-cyan-950/40 text-cyan-600 dark:text-cyan-400 border border-cyan-100 dark:border-cyan-900/40 hover:bg-cyan-100 dark:hover:bg-cyan-950/60' },
+    { label: 'snake_case', fn: toSnakeCase, color: 'bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-100 dark:border-amber-900/40 hover:bg-amber-100 dark:hover:bg-amber-950/60' },
+    { label: 'kebab-case', fn: toKebabCase, color: 'bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-100 dark:border-rose-900/40 hover:bg-rose-100 dark:hover:bg-rose-950/60' },
+    { label: 'dot.case', fn: toDotCase, color: 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-750 hover:bg-slate-200 dark:hover:bg-slate-700' }
   ];
 
   return (
@@ -109,8 +109,8 @@ export const CaseConverter: React.FC = () => {
         />
 
         {/* Buttons Controls matrices */}
-        <div className="space-y-3">
-          <span className="block text-xs font-poppins font-semibold text-muted dark:text-gray-300 flex items-center gap-1.5">
+        <div className="space-y-3 pt-5">
+          <span className="block text-xs font-poppins font-semibold text-muted dark:text-gray-300 flex items-center gap-1.5 mb-2.5">
             <Sliders className="w-4 h-4 text-primary" /> Select Conversion Case Operator
           </span>
 
@@ -128,7 +128,7 @@ export const CaseConverter: React.FC = () => {
         </div>
 
         {/* Bottom statistics dashboard */}
-        <div className="bg-background dark:bg-[#0F0F1A] border border-border dark:border-[#2D2D45]/30 p-3.5 rounded-xl flex items-center justify-between text-xs font-poppins text-muted">
+        <div className="mt-8 bg-background dark:bg-[#0F0F1A] border border-border dark:border-[#2D2D45]/30 p-3.5 rounded-xl flex items-center justify-between text-xs font-poppins text-muted">
           <span className="flex items-center gap-1"><FileText className="w-4 h-4 text-primary shrink-0" /> Word Counting metrics</span>
           <div className="flex gap-4 font-mono font-bold text-text-base">
             <span>🔤 Chars: {stats.chars}</span>

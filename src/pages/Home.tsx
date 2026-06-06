@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
 import ToolsGrid from '../components/ToolsGrid';
 import Footer from '../components/Footer';
 
@@ -11,7 +10,6 @@ export const Home: React.FC = () => {
       <Navbar />
       
       <main className="flex-grow">
-        <Hero />
         <ToolsGrid />
       </main>
 

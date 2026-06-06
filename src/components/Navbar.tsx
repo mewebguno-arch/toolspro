@@ -67,9 +67,24 @@ export const Navbar: React.FC = () => {
   };
 
   useEffect(() => {
-    setIsOpen(false);
+    if (location.state && (location.state as any).openToolsMenu) {
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+    }
     setShowToolsDropdown(false);
   }, [location]);
+
+  useEffect(() => {
+    const handleOpenMenu = () => {
+      setIsOpen(prev => !prev);
+    };
+
+    window.addEventListener('open-mobile-menu', handleOpenMenu);
+    return () => {
+      window.removeEventListener('open-mobile-menu', handleOpenMenu);
+    };
+  }, []);
 
   // Handle click outside for dropdown closing
   useEffect(() => {
@@ -103,7 +118,7 @@ export const Navbar: React.FC = () => {
   }, [location.hash, location.pathname]);
 
   return (
-    <nav className="sticky top-0 z-50 w-full glass transition-all duration-300">
+    <nav className="sticky top-0 z-50 w-full bg-surface border-b border-border/80 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
@@ -121,7 +136,7 @@ export const Navbar: React.FC = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-6">
             {/* Home Link */}
             <Link
               to="/"
@@ -244,13 +259,13 @@ export const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center">
-            <ThemeToggle />
+          <div className="hidden lg:flex items-center">
+            <ThemeToggle id="theme-toggle-desktop" />
           </div>
 
           {/* Mobile hamburger & Toggle combo */}
-          <div className="flex md:hidden items-center gap-3">
-            <ThemeToggle />
+          <div className="hidden md:flex lg:hidden items-center gap-3">
+            <ThemeToggle id="theme-toggle-btn" />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg text-slate-600 hover:text-slate-900 dark:text-gray-300 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
@@ -270,7 +285,7 @@ export const Navbar: React.FC = () => {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="md:hidden overflow-hidden bg-surface dark:bg-[#1A1A2E] border-b border-border/80 dark:border-[#2D2D45]"
+            className="lg:hidden overflow-hidden bg-surface border-b border-border/80"
           >
             <div className="px-4 pt-2 pb-6 space-y-4">
               {/* Home & About Links on Mobile */}

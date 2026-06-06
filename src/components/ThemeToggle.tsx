@@ -3,13 +3,17 @@ import { motion } from 'motion/react';
 import { useTheme } from '../context/ThemeContext';
 import { Sun, Moon } from 'lucide-react';
 
-export const ThemeToggle: React.FC = () => {
+interface ThemeToggleProps {
+  id?: string;
+}
+
+export const ThemeToggle: React.FC<ThemeToggleProps> = ({ id = 'theme-toggle-btn' }) => {
   const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="relative group">
       <motion.button
-        id="theme-toggle-btn"
+        id={id}
         onClick={toggleTheme}
         whileTap={{ scale: 0.9 }}
         className="p-2.5 rounded-full bg-surface dark:bg-[#1A1A2E] border border-border dark:border-[#2D2D45] text-text-base hover:bg-muted/10 transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background cursor-pointer flex items-center justify-center"

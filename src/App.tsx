@@ -10,9 +10,17 @@ export function ScrollToTop(): null {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // Only scroll to top if there's no hash anchor (e.g. #tools)
+    // Scroll to top if there's no hash anchor (e.g. #tools)
     if (!hash) {
       window.scrollTo(0, 0);
+    } else {
+      // If there is an anchor, find the element and scroll into view smoothly
+      const element = document.getElementById(hash.substring(1));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 150);
+      }
     }
   }, [pathname, hash]);
 
@@ -20,12 +28,17 @@ export function ScrollToTop(): null {
 }
 
 // Router Fallback Layout Wrapper
+import { MobileBottomNav } from './components/MobileBottomNav';
+
 const LayoutWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <>
+    <div className="pb-16 md:pb-0 min-h-screen flex flex-col justify-between">
       <ScrollToTop />
-      {children}
-    </>
+      <div className="w-full flex-grow flex flex-col">
+        {children}
+      </div>
+      <MobileBottomNav />
+    </div>
   );
 };
 

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-poppins: "Poppins", sans-serif;
   --font-inter: "Inter", sans-serif;
@@ -146,3 +148,15 @@
 .json-number { color: #F59E0B; }
 .json-boolean { color: #8B5CF6; }
 .json-null { color: #EF4444; }
+
+/* Force bottom navigation to only show on mobile devices and hide on tablets / PCs */
+.only-mobile-nav {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  .only-mobile-nav {
+    display: flex !important;
+  }
+}
+
