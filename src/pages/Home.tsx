@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import ToolsGrid from '../components/ToolsGrid';
-import Footer from '../components/Footer';
 
 export const Home: React.FC = () => {
   return (
@@ -12,8 +11,6 @@ export const Home: React.FC = () => {
       <main className="flex-grow">
         <ToolsGrid />
       </main>
-
-      <Footer />
     </div>
   );
 };

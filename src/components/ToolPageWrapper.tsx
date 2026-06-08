@@ -22,7 +22,6 @@ import {
   Sparkles
 } from 'lucide-react';
 import Navbar from './Navbar';
-import Footer from './Footer';
 import { toolHelpData } from '../data/toolHelpData';
 
 interface ToolPageWrapperProps {
@@ -270,9 +269,6 @@ export const ToolPageWrapper: React.FC<ToolPageWrapperProps> = ({
         )}
 
       </main>
-
-      {/* Dynamic Footer */}
-      <Footer />
 
     </div>
   );

@@ -124,15 +124,22 @@ export const Navbar: React.FC = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center gap-2 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg px-2 py-1"
-            aria-label="ToolKit Pro home page"
+            className="flex items-center gap-3 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/50 rounded-xl px-2.5 py-1.5 transition-all duration-300"
+            aria-label="tools by webguno"
           >
-            <div className="w-8 h-8 hero-gradient rounded-lg flex items-center justify-center text-white text-base font-bold shadow-md shadow-primary/20 group-hover:scale-105 transition-transform">
-              ⚡
+            <div className="relative w-9 h-9 bg-gradient-to-tr from-[#6C63FF] via-[#8F5BFF] to-[#FF6584] rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-500/20 group-hover:scale-105 group-hover:rotate-3 transition-all duration-300 shrink-0">
+              <Zap className="w-5 h-5 text-white fill-white/10 group-hover:fill-white/35 transition-all duration-300" />
+              {/* Subtle back-glow */}
+              <div className="absolute -inset-0.5 bg-gradient-to-tr from-[#6C63FF] to-[#FF6584] rounded-xl blur-sm opacity-25 group-hover:opacity-50 transition duration-300 z-[-1]" />
             </div>
-            <span className="font-poppins font-extrabold text-xl tracking-tight text-gradient">
-              ToolKit Pro
-            </span>
+            <div className="flex items-baseline gap-1.5 select-none">
+              <span className="font-poppins font-black text-slate-800 dark:text-white text-xl tracking-tight leading-none transition-colors">
+                Tools
+              </span>
+              <span className="font-disney text-[18px] tracking-wide text-[#6C63FF] dark:text-[#7C74FF] group-hover:text-[#FF6584] dark:group-hover:text-[#FF7096] leading-none transition-all duration-300">
+                By WebGuno
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Nav */}
@@ -285,9 +292,9 @@ export const Navbar: React.FC = () => {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="lg:hidden overflow-hidden bg-surface border-b border-border/80"
+            className="lg:hidden overflow-hidden bg-surface border-b border-border/80 hardware-accelerated-container"
           >
-            <div className="px-4 pt-2 pb-6 space-y-4">
+            <div className="px-4 pt-2 pb-6 space-y-4 hardware-accelerated-container">
               {/* Home & About Links on Mobile */}
               <div className="grid grid-cols-2 gap-2">
                 <Link
