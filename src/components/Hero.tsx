@@ -53,7 +53,7 @@ export const Hero: React.FC = () => {
 
       {/* Floating Badges */}
       <div className="absolute inset-0 select-none overflow-hidden pointer-events-none z-10">
-        <div className="absolute top-[18%] left-[5%] md:left-[10%] lg:left-[14%] animate-float-slow hidden sm:flex items-center gap-3 bg-white/70 dark:bg-[#1A1A2E]/50 p-3.5 rounded-2xl shadow-xl border border-border/40 dark:border-[#2D2D45]/30 backdrop-blur-md">
+        <div className="absolute top-[18%] left-[5%] md:left-[10%] lg:left-[14%] animate-float-slow hidden sm:flex items-center gap-3 bg-white dark:bg-[#1A1A2E] p-3.5 rounded-2xl shadow-xl border border-border dark:border-[#2D2D45]">
           <div className="w-10 h-10 bg-indigo-100 dark:bg-indigo-950/40 rounded-xl flex items-center justify-center text-lg">📄</div>
           <div className="text-left font-poppins">
             <div className="text-xs font-bold text-text-base">PDF Merger</div>
@@ -61,7 +61,7 @@ export const Hero: React.FC = () => {
           </div>
         </div>
 
-        <div className="absolute bottom-[24%] right-[5%] md:right-[10%] lg:right-[14%] animate-float-medium hidden sm:flex items-center gap-3 bg-white/70 dark:bg-[#1A1A2E]/50 p-3.5 rounded-2xl shadow-xl border border-border/40 dark:border-[#2D2D45]/30 backdrop-blur-md" style={{ animationDelay: '-3s' }}>
+        <div className="absolute bottom-[24%] right-[5%] md:right-[10%] lg:right-[14%] animate-float-medium hidden sm:flex items-center gap-3 bg-white dark:bg-[#1A1A2E] p-3.5 rounded-2xl shadow-xl border border-border dark:border-[#2D2D45]" style={{ animationDelay: '-3s' }}>
           <div className="w-10 h-10 bg-amber-100 dark:bg-amber-950/40 rounded-xl flex items-center justify-center text-lg">🔑</div>
           <div className="text-left font-poppins">
             <div className="text-xs font-bold text-text-base">Password Gen</div>
@@ -80,7 +80,7 @@ export const Hero: React.FC = () => {
           {/* Badge */}
           <motion.div 
             variants={itemVariants}
-            className="inline-flex items-center gap-1.5 bg-indigo-50/90 dark:bg-indigo-950/45 border border-indigo-200/50 dark:border-indigo-800/40 px-3.5 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wider uppercase text-indigo-600 dark:text-indigo-300 font-poppins backdrop-blur-sm shadow-sm"
+            className="inline-flex items-center gap-1.5 bg-indigo-50 dark:bg-indigo-950/80 border border-indigo-200/50 dark:border-indigo-800/40 px-3.5 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wider uppercase text-indigo-600 dark:text-indigo-300 font-poppins shadow-sm"
           >
             <Sparkles className="w-4 h-4 text-indigo-500 dark:text-indigo-400 shrink-0" />
             100% Client-Side Private Processing
@@ -121,7 +121,7 @@ export const Hero: React.FC = () => {
             
             <button
               onClick={handleScrollToAbout}
-              className="w-full sm:w-auto font-poppins font-medium text-base py-3.5 px-8 rounded-xl border border-border dark:border-[#2D2D45] bg-surface/40 dark:bg-[#1A1A2E]/20 backdrop-blur-sm hover:bg-muted/10 transition-all flex items-center justify-center gap-2 cursor-pointer text-text-base"
+              className="w-full sm:w-auto font-poppins font-medium text-base py-3.5 px-8 rounded-xl border border-border dark:border-[#2D2D45] bg-surface dark:bg-[#1A1A2E] hover:bg-muted/10 transition-all flex items-center justify-center gap-2 cursor-pointer text-text-base"
               aria-label="Learn about ToolKit Pro security and operations"
             >
               Learn More

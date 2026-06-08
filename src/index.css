@@ -83,35 +83,27 @@
   100% { transform: translateY(0); }
 }
 
-/* Frosted Glass Core Classes */
+/* Beautiful High-Compatibility Flat Cards (Replaced backdrop-filters to solve Chromium Mobile static tearing) */
 .glass {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.8);
 }
 
 .dark .glass {
-  background: rgba(26, 26, 46, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(45, 45, 69, 0.5);
+  background: #1A1A2E;
+  border-bottom: 1px solid rgba(45, 45, 69, 0.8);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(229, 231, 235, 0.5);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+  background: #FFFFFF;
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  box-shadow: 0 4px 20px 0 rgba(31, 38, 135, 0.03), 0 1px 3px 0 rgba(0, 0, 0, 0.02);
 }
 
 .dark .glass-card {
-  background: rgba(26, 26, 46, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(45, 45, 69, 0.52);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  background: #1A1A2E;
+  border: 1px solid rgba(45, 45, 69, 0.8);
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.25), 0 1px 4px 0 rgba(0, 0, 0, 0.15);
 }
 
 .hero-gradient {
@@ -167,11 +159,7 @@
 .hardware-accelerated-container {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  -webkit-perspective: 1000;
-  perspective: 1000;
-  will-change: transform, opacity, height;
+  will-change: opacity;
 }
 
 

@@ -300,7 +300,7 @@ export const ImageToPdf: React.FC = () => {
                       referrerPolicy="no-referrer"
                       className="max-h-full max-w-full object-contain rounded shadow-sm"
                     />
-                    <span className="absolute top-2 left-2 text-[10px] font-mono font-bold bg-black/60 backdrop-blur-md text-white px-2 py-0.5 rounded-md">
+                    <span className="absolute top-2 left-2 text-[10px] font-mono font-bold bg-zinc-900/95 text-white px-2 py-0.5 rounded-md shadow-sm">
                       Page {index + 1}
                     </span>
                   </div>
