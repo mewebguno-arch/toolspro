@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import { useIsMobile } from '../hooks/useIsMobile';
 import { ToolConfig } from '../types';
 import { 
   ArrowUpRight,
@@ -53,25 +54,10 @@ const getGradientStyle = (gradientStr: string) => {
 
 export const ToolCard: React.FC<ToolCardProps> = ({ tool, index }) => {
   const IconComponent = iconMap[tool.icon] || FileImage;
+  const isMobile = useIsMobile();
 
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ 
-        type: 'spring', 
-        stiffness: 100, 
-        damping: 15,
-        delay: index * 0.05 
-      }}
-      whileHover={{ 
-        y: -6, 
-        boxShadow: '0 20px 30px -10px rgba(108, 99, 255, 0.12)'
-      }}
-      whileTap={{ scale: 0.98 }}
-      className="group glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden"
-    >
+  const cardContent = (
+    <>
       {/* Decorative accent background on hover */}
       <div 
         style={getGradientStyle(tool.gradient)}
@@ -108,6 +94,36 @@ export const ToolCard: React.FC<ToolCardProps> = ({ tool, index }) => {
         Open Tool
         <ArrowUpRight className="w-4 h-4" />
       </Link>
+    </>
+  );
+
+  if (isMobile) {
+    return (
+      <div className="group glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+        {cardContent}
+      </div>
+    );
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ 
+        type: 'spring', 
+        stiffness: 100, 
+        damping: 15,
+        delay: index * 0.05 
+      }}
+      whileHover={{ 
+        y: -6, 
+        boxShadow: '0 20px 30px -10px rgba(108, 99, 255, 0.12)'
+      }}
+      whileTap={{ scale: 0.98 }}
+      className="group glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden"
+    >
+      {cardContent}
     </motion.div>
   );
 };
