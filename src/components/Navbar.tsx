@@ -5,6 +5,7 @@ import {
   Menu, 
   X, 
   Zap, 
+  Wrench,
   ChevronDown, 
   Sparkles,
   FileStack,
@@ -124,20 +125,29 @@ export const Navbar: React.FC = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center gap-3 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/50 rounded-xl px-2.5 py-1.5 transition-all duration-300"
+            className="flex items-center gap-2.5 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/50 rounded-xl px-2 py-1.5 transition-all duration-300"
             aria-label="tools by webguno"
           >
-            <div className="relative w-9 h-9 bg-gradient-to-tr from-[#6C63FF] via-[#8F5BFF] to-[#FF6584] rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-500/20 group-hover:scale-105 group-hover:rotate-3 transition-all duration-300 shrink-0">
-              <Zap className="w-5 h-5 text-white fill-white/10 group-hover:fill-white/35 transition-all duration-300" />
-              {/* Subtle back-glow */}
-              <div className="absolute -inset-0.5 bg-gradient-to-tr from-[#6C63FF] to-[#FF6584] rounded-xl blur-sm opacity-25 group-hover:opacity-50 transition duration-300 z-[-1]" />
+            {/* Modern Tool Icon Logo matching the professional theme with high accessibility fallbacks */}
+            <div className="relative w-9 h-9 bg-[#6C63FF] dark:bg-[#7C74FF] bg-gradient-to-tr from-[#6C63FF] via-[#7C74FF] to-[#FF6584] rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-500/20 group-hover:scale-105 group-hover:rotate-12 transition-all duration-300 shrink-0">
+              <Wrench className="w-5 h-5 text-white stroke-[2.5px] fill-white/20 group-hover:fill-white/40 transition-all duration-300" />
+              {/* Soft subtle breathing glow with fallback bg */}
+              <div className="absolute -inset-0.5 bg-[#6C63FF] dark:bg-[#7C74FF] bg-gradient-to-tr from-[#6C63FF] to-[#FF6584] rounded-xl blur-sm opacity-20 group-hover:opacity-45 transition duration-300 z-[-1]" />
             </div>
-            <div className="flex items-baseline gap-1.5 select-none">
-              <span className="font-poppins font-black text-slate-800 dark:text-white text-xl tracking-tight leading-none transition-colors">
-                Tools
-              </span>
-              <span className="font-disney text-[18px] tracking-wide text-[#6C63FF] dark:text-[#7C74FF] group-hover:text-[#FF6584] dark:group-hover:text-[#FF7096] leading-none transition-all duration-300">
-                By WebGuno
+
+            {/* Title rendered in Poppins font as requested */}
+            <div className="flex items-center select-none leading-none">
+              <span className="font-poppins font-extrabold text-lg tracking-tight text-zinc-800 dark:text-zinc-100 transition-all duration-300">
+                Tools by{' '}
+                <span className="inline-flex">
+                  <span className="text-[#4F46E5] dark:text-[#818CF8]">W</span>
+                  <span className="text-[#FF4D4D] dark:text-[#FF6B6B]">e</span>
+                  <span className="text-[#0ea5e9] dark:text-[#38bdf8]">b</span>
+                  <span className="text-[#10b981] dark:text-[#34d399]">G</span>
+                  <span className="text-[#f59e0b] dark:text-[#fbbf24]">u</span>
+                  <span className="text-[#ec4899] dark:text-[#f472b6]">n</span>
+                  <span className="text-[#a855f7] dark:text-[#c084fc]">o</span>
+                </span>
               </span>
             </div>
           </Link>
