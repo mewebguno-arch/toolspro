@@ -1,13 +1,11 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Walter+Turncoat&family=Pacifico&display=swap');
-@import url('https://fonts.cdnfonts.com/css/waltograph');
 
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-poppins: "Poppins", sans-serif;
-  --font-inter: "Inter", sans-serif;
-  --font-disney: "Waltograph", "Waltograph UI", "Walter Turncoat", "Pacifico", cursive;
+  --font-poppins: "Times New Roman", Times, Georgia, serif;
+  --font-inter: "Times New Roman", Times, Georgia, serif;
+  --font-disney: "Times New Roman", Times, Georgia, serif;
 
   --color-background: var(--background);
   --color-surface: var(--surface);
@@ -22,8 +20,8 @@
 :root {
   --background: #F8F9FF;
   --surface: #FFFFFF;
-  --primary: #6C63FF;
-  --secondary: #FF6584;
+  --primary: #111111;
+  --secondary: #222222;
   --text-base: #1A1A2E;
   --muted: #6B7280;
   --border: #E5E7EB;
@@ -33,8 +31,8 @@
 .dark {
   --background: #0F0F1A;
   --surface: #1A1A2E;
-  --primary: #7C74FF;
-  --secondary: #FF7096;
+  --primary: #F1F1FF;
+  --secondary: #E2E8F0;
   --text-base: #F1F1FF;
   --muted: #9CA3AF;
   --border: #2D2D45;
@@ -45,12 +43,12 @@
   body {
     background-color: var(--background);
     color: var(--text-base);
-    font-family: 'Inter', sans-serif;
+    font-family: "Times New Roman", Times, Georgia, serif;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Times New Roman", Times, Georgia, serif;
   }
 
   /* Custom styled scrollbars */
@@ -62,28 +60,19 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(108, 99, 255, 0.2);
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 9999px;
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(108, 99, 255, 0.4);
-  }
 }
 
-/* Custom Keyframe Animations */
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
+/* Custom Keyframe Animations (Zero hardware-intensive transforms) */
 @keyframes float {
   0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-3px); }
   100% { transform: translateY(0); }
 }
 
-/* Beautiful High-Compatibility Flat Cards (Replaced backdrop-filters to solve Chromium Mobile static tearing) */
+/* Beautiful High-Compatibility Flat Cards (Absolutely no blurs or complex shadows) */
 .glass {
   background: #FFFFFF;
   border-bottom: 1px solid rgba(229, 231, 235, 0.8);
@@ -97,32 +86,13 @@
 .glass-card {
   background: #FFFFFF;
   border: 1px solid rgba(229, 231, 235, 0.8);
-  box-shadow: 0 4px 20px 0 rgba(31, 38, 135, 0.03), 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
 }
 
 .dark .glass-card {
   background: #1A1A2E;
   border: 1px solid rgba(45, 45, 69, 0.8);
-  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.25), 0 1px 4px 0 rgba(0, 0, 0, 0.15);
-}
-
-.hero-gradient {
-  background: linear-gradient(135deg, #6C63FF, #FF6584, #10B981, #6C63FF);
-  background-size: 200% 200%;
-  animation: gradient-shift 10s ease infinite;
-}
-
-.text-gradient {
-  background: linear-gradient(90deg, #6C63FF, #FF6584);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Animation utility classes */
-.animate-gradient-shift {
-  background-size: 400% 400%;
-  animation: gradient-shift 8s ease infinite;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .animate-float-slow {
@@ -138,11 +108,11 @@
 }
 
 /* Syntax Highlighting for JSON formatter */
-.json-key { color: var(--primary); font-weight: 500; }
+.json-key { color: var(--primary); font-weight: bold; }
 .json-string { color: #10B981; }
-.json-number { color: #F59E0B; }
-.json-boolean { color: #8B5CF6; }
-.json-null { color: #EF4444; }
+.json-number { color: #D97706; }
+.json-boolean { color: #7C3AED; }
+.json-null { color: #DC2626; }
 
 /* Force bottom navigation to only show on mobile devices and hide on tablets / PCs */
 .only-mobile-nav {
@@ -157,8 +127,6 @@
 
 /* Prevent layout or height-transition flickering on budget mobile GPUs (e.g., Samsung Galaxy F05 in Chrome) */
 .hardware-accelerated-container {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
   will-change: opacity;
 }
 

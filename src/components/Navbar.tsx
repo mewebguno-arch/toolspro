@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
 import { 
   Menu, 
   X, 
-  Zap, 
   Wrench,
   ChevronDown, 
   Sparkles,
@@ -36,7 +34,6 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Type
 };
 
-// Parses string like "from-[#FF5E62] to-[#FF9966]" into standard background image CSS rule
 const getGradientStyle = (gradientStr: string) => {
   const fromMatch = gradientStr.match(/from-\[#?([0-9a-fA-F]+)\]/);
   const toMatch = gradientStr.match(/to-\[#?([0-9a-fA-F]+)\]/);
@@ -49,7 +46,7 @@ const getGradientStyle = (gradientStr: string) => {
     };
   }
   return {
-    backgroundImage: 'linear-gradient(135deg, #6C63FF, #FF6584)'
+    backgroundImage: 'linear-gradient(135deg, #111111, #222222)'
   };
 };
 
@@ -61,7 +58,6 @@ export const Navbar: React.FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
-  // Helper to check if a link is active
   const isActive = (path: string) => {
     if (path.startsWith('/#')) {
       return location.pathname === '/' && location.hash === path.substring(1);
@@ -89,7 +85,6 @@ export const Navbar: React.FC = () => {
     };
   }, []);
 
-  // Handle click outside for dropdown closing
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -107,7 +102,6 @@ export const Navbar: React.FC = () => {
     };
   }, []);
 
-  // Handle hash scroll when entering from other pages
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.substring(1);
@@ -130,14 +124,10 @@ export const Navbar: React.FC = () => {
             className="flex items-center gap-2.5 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/50 rounded-xl px-2 py-1.5 transition-all duration-300"
             aria-label="tools by webguno"
           >
-            {/* Modern Tool Icon Logo matching the professional theme with high accessibility fallbacks */}
-            <div className="relative w-9 h-9 bg-[#6C63FF] dark:bg-[#7C74FF] bg-gradient-to-tr from-[#6C63FF] via-[#7C74FF] to-[#FF6584] rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-500/20 group-hover:scale-105 group-hover:rotate-12 transition-all duration-300 shrink-0">
-              <Wrench className="w-5 h-5 text-white stroke-[2.5px] fill-white/20 group-hover:fill-white/40 transition-all duration-300" />
-              {/* Soft subtle breathing glow with fallback bg */}
-              <div className="absolute -inset-0.5 bg-[#6C63FF] dark:bg-[#7C74FF] bg-gradient-to-tr from-[#6C63FF] to-[#FF6584] rounded-xl blur-sm opacity-20 group-hover:opacity-45 transition duration-300 z-[-1]" />
+            <div className="relative w-9 h-9 bg-zinc-800 dark:bg-zinc-200 rounded-xl flex items-center justify-center text-white dark:text-zinc-900 shadow-md transition-all duration-300 shrink-0">
+              <Wrench className="w-5 h-5 text-white dark:text-zinc-900 stroke-[2.5px]" />
             </div>
 
-            {/* Title rendered in Poppins font as requested */}
             <div className="flex items-center select-none leading-none">
               <span className="font-poppins font-extrabold text-lg tracking-tight text-zinc-800 dark:text-zinc-100 transition-all duration-300">
                 Tools by{' '}
@@ -168,11 +158,7 @@ export const Navbar: React.FC = () => {
             >
               Home
               {isActive('/') && (
-                <motion.div
-                  layoutId="activeNavIndicator"
-                  className="absolute bottom-0 left-1 right-1 h-0.5 bg-indigo-600 dark:bg-indigo-400 rounded-full"
-                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                />
+                <div className="absolute bottom-0 left-1 right-1 h-0.5 bg-indigo-600 dark:bg-indigo-400 rounded-full transition-all duration-300" />
               )}
             </Link>
 
@@ -196,61 +182,55 @@ export const Navbar: React.FC = () => {
               </button>
 
               {/* Desktop Mega Dropdown Panel */}
-              <AnimatePresence>
-                {showToolsDropdown && (
-                  <motion.div
-                    ref={dropdownRef}
-                    initial={{ opacity: 0, y: 12, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute left-1/2 -translate-x-[25%] top-10 z-50 w-[580px] rounded-2xl glass-card border border-border/80 dark:border-[#2D2D45] p-5 shadow-2xl"
-                  >
-                    <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-border/40 dark:border-[#2D2D45]/40">
-                      <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                        <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-                        <span>Quick Access Tools Catalog</span>
-                      </div>
-                      <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500">10 tools fully active on-device</span>
+              {showToolsDropdown && (
+                <div
+                  ref={dropdownRef}
+                  className="absolute left-1/2 -translate-x-[25%] top-10 z-50 w-[580px] rounded-2xl bg-surface border border-border/80 dark:border-[#2D2D45] p-5 shadow-2xl"
+                >
+                  <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-border/40 dark:border-[#2D2D45]/45">
+                    <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>Quick Access Tools Catalog</span>
                     </div>
-                    
-                    <div className="grid grid-cols-2 gap-3 max-h-[380px] overflow-y-auto pr-1">
-                      {TOOLS.map((tool) => {
-                        const toolActive = location.pathname === tool.route;
-                        const ToolIcon = iconMap[tool.icon] || FileImage;
-                        return (
-                          <Link
-                            key={tool.id}
-                            to={tool.route}
-                            onClick={() => setShowToolsDropdown(false)}
-                            id={`dropdown-tool-${tool.id}`}
-                            className={`group flex items-start gap-3 p-2.5 rounded-xl transition-all duration-200 border ${
-                              toolActive
-                                ? 'bg-indigo-50/50 dark:bg-indigo-950/20 border-indigo-200/60 dark:border-indigo-800/40 text-indigo-700 dark:text-indigo-300'
-                                : 'border-transparent bg-transparent hover:bg-slate-50 dark:hover:bg-slate-800/45 hover:border-slate-100 dark:hover:border-slate-800'
-                            }`}
+                    <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500 font-normal">10 tools fully active on-device</span>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-3 max-h-[380px] overflow-y-auto pr-1">
+                    {TOOLS.map((tool) => {
+                      const toolActive = location.pathname === tool.route;
+                      const ToolIcon = iconMap[tool.icon] || FileImage;
+                      return (
+                        <Link
+                          key={tool.id}
+                          to={tool.route}
+                          onClick={() => setShowToolsDropdown(false)}
+                          id={`dropdown-tool-${tool.id}`}
+                          className={`group flex items-start gap-3 p-2.5 rounded-xl transition-all duration-200 border ${
+                            toolActive
+                              ? 'bg-indigo-50/50 dark:bg-indigo-950/20 border-indigo-200/60 dark:border-indigo-800/40 text-indigo-700 dark:text-indigo-300'
+                              : 'border-transparent bg-transparent hover:bg-slate-50 dark:hover:bg-slate-800/45 hover:border-slate-100 dark:hover:border-slate-800'
+                          }`}
+                        >
+                          <div 
+                            style={getGradientStyle(tool.gradient)}
+                            className="w-8 h-8 rounded-lg flex items-center justify-center shadow-sm text-white flex-shrink-0 group-hover:scale-105 transition-transform duration-200"
                           >
-                            <div 
-                              style={getGradientStyle(tool.gradient)}
-                              className="w-8 h-8 rounded-lg flex items-center justify-center shadow-sm text-white flex-shrink-0 group-hover:scale-105 transition-transform duration-200"
-                            >
-                              <ToolIcon className="w-4.5 h-4.5 text-white stroke-[2.2]" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h5 className="font-poppins font-semibold text-xs text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">
-                                {tool.name}
-                              </h5>
-                              <p className="font-inter text-[11px] text-slate-400 dark:text-slate-500 mt-0.5 line-clamp-1 leading-normal font-normal">
-                                {tool.description}
-                              </p>
-                            </div>
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                            <ToolIcon className="w-4.5 h-4.5 text-white stroke-[2.2]" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h5 className="font-poppins font-semibold text-xs text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">
+                              {tool.name}
+                            </h5>
+                            <p className="font-inter text-[11px] text-slate-400 dark:text-slate-500 mt-0.5 line-clamp-1 leading-normal font-normal">
+                              {tool.description}
+                            </p>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* About Link */}
