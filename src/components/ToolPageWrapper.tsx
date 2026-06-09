@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useIsMobile } from '../hooks/useIsMobile';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, 
   Home, 
@@ -42,6 +42,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Binary,
   Palette,
   Type,
+  // Support both emoji fallbacks and the current names
   '🥞': FileStack,
   '🗜️': FileImage,
   '🖼️': Images,
@@ -60,7 +61,6 @@ export const ToolPageWrapper: React.FC<ToolPageWrapperProps> = ({
   description,
   children
 }) => {
-  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const IconComponent = iconMap[icon] || FileImage;
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -72,12 +72,17 @@ export const ToolPageWrapper: React.FC<ToolPageWrapperProps> = ({
   const helpInfo = toolHelpData[title];
 
   const handleGoBack = () => {
+    // Navigate back to the tools grid anchor
     navigate('/#tools');
   };
 
   return (
     <div id="tool-page-layout" className="min-h-screen bg-background dark:bg-[#0F0F1A] flex flex-col justify-between transition-colors duration-300 relative overflow-hidden">
       
+      {/* Ambient Blur decorative elements */}
+      <div className="absolute top-10 left-[10%] w-72 h-72 bg-[#6C63FF]/10 dark:bg-[#6C63FF]/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-20 right-[15%] w-80 h-80 bg-[#FF6584]/15 dark:bg-[#FF6584]/5 rounded-full blur-[120px] pointer-events-none" />
+
       {/* Dynamic Header */}
       <div className="hidden md:block">
         <Navbar />
@@ -86,13 +91,14 @@ export const ToolPageWrapper: React.FC<ToolPageWrapperProps> = ({
       {/* Android-style Mobile Top Header */}
       <header className="sticky top-0 z-50 md:hidden w-full h-14 bg-surface border-b border-border flex items-center justify-between px-3 shadow-sm select-none transition-all duration-300">
         <div className="flex items-center gap-3">
-          <button
+          <motion.button
+            whileTap={{ scale: 0.95 }}
             onClick={handleGoBack}
-            className="p-2 -ml-1 rounded-full text-slate-700 hover:text-slate-900 dark:text-gray-200 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-950/40 active:bg-slate-100 dark:active:bg-slate-950/60 focus:outline-none cursor-pointer flex items-center justify-center active:scale-95 transition-all"
+            className="p-2 -ml-1 rounded-full text-slate-700 hover:text-slate-900 dark:text-gray-200 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-950/40 active:bg-slate-100 dark:active:bg-slate-950/60 focus:outline-none cursor-pointer flex items-center justify-center"
             aria-label="Back to dashboard"
           >
             <ArrowLeft className="w-5 h-5 stroke-[2.25] text-indigo-600 dark:text-indigo-400" />
-          </button>
+          </motion.button>
           
           <div className="flex items-center gap-2">
             <div className="p-1.5 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100/50 dark:border-indigo-900/40 text-indigo-600 dark:text-indigo-400 rounded-lg flex items-center justify-center">
@@ -154,7 +160,12 @@ export const ToolPageWrapper: React.FC<ToolPageWrapperProps> = ({
 
         {/* Detailed Guide & FAQ Section */}
         {helpInfo && (
-          <section className="mt-14 pt-10 border-t border-border/75">
+          <motion.section 
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+            className="mt-14 pt-10 border-t border-border/75"
+          >
             <div className="flex flex-col gap-8 md:gap-10">
               {/* Header Title */}
               <div className="flex items-center gap-3 border-b border-border/50 pb-4">
@@ -231,11 +242,21 @@ export const ToolPageWrapper: React.FC<ToolPageWrapperProps> = ({
                             />
                           </button>
                           
-                          {isOpen && (
-                            <div className="p-4 pt-0 border-t border-border/40 dark:border-border/10 text-xs sm:text-sm text-muted dark:text-gray-400 font-inter leading-relaxed whitespace-pre-wrap">
-                              {faq.answer}
-                            </div>
-                          )}
+                          <AnimatePresence initial={false}>
+                            {isOpen && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.25, ease: 'easeInOut' }}
+                                className="overflow-hidden"
+                              >
+                                <div className="p-4 pt-0 border-t border-border/40 dark:border-border/10 text-xs sm:text-sm text-muted dark:text-gray-400 font-inter leading-relaxed whitespace-pre-wrap">
+                                  {faq.answer}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </div>
                       );
                     })}
@@ -244,7 +265,7 @@ export const ToolPageWrapper: React.FC<ToolPageWrapperProps> = ({
 
               </div>
             </div>
-          </section>
+          </motion.section>
         )}
 
       </main>

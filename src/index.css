@@ -1,27 +1,48 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Walter+Turncoat&family=Pacifico&display=swap');
+@import url('https://fonts.cdnfonts.com/css/waltograph');
 
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-poppins: "Times New Roman", Times, Georgia, serif;
-  --font-inter: "Times New Roman", Times, Georgia, serif;
-  --font-disney: "Times New Roman", Times, Georgia, serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-disney: "Waltograph", "Waltograph UI", "Walter Turncoat", "Pacifico", cursive;
 
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-text-base: var(--text-base);
+  --color-foreground: var(--text-base);
+  --color-text: var(--text-base);
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-success: var(--success);
+
+  --animate-gradient-shift: gradient-shift 8s ease infinite;
+  --animate-float-slow: float 6s ease-in-out infinite;
+  --animate-float-medium: float 4.5s ease-in-out infinite;
+  --animate-float-fast: float 3s ease-in-out infinite;
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
 }
 
 :root {
   --background: #F8F9FF;
   --surface: #FFFFFF;
-  --primary: #111111;
-  --secondary: #222222;
+  --primary: #6C63FF;
+  --secondary: #FF6584;
   --text-base: #1A1A2E;
   --muted: #6B7280;
   --border: #E5E7EB;
@@ -31,8 +52,8 @@
 .dark {
   --background: #0F0F1A;
   --surface: #1A1A2E;
-  --primary: #F1F1FF;
-  --secondary: #E2E8F0;
+  --primary: #7C74FF;
+  --secondary: #FF7096;
   --text-base: #F1F1FF;
   --muted: #9CA3AF;
   --border: #2D2D45;
@@ -43,12 +64,12 @@
   body {
     background-color: var(--background);
     color: var(--text-base);
-    font-family: "Times New Roman", Times, Georgia, serif;
+    font-family: 'Inter', sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Times New Roman", Times, Georgia, serif;
+    font-family: 'Poppins', sans-serif;
   }
 
   /* Custom styled scrollbars */
@@ -60,74 +81,80 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(108, 99, 255, 0.2);
     border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(108, 99, 255, 0.4);
   }
 }
 
-/* Custom Keyframe Animations (Zero hardware-intensive transforms) */
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
-  100% { transform: translateY(0); }
+/* Frosted Glass Core Classes as Tailwind Utilities */
+@utility glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+
+  @variant dark {
+    background: rgba(26, 26, 46, 0.75);
+    border-bottom: 1px solid rgba(45, 45, 69, 0.5);
+  }
 }
 
-/* Beautiful High-Compatibility Flat Cards (Absolutely no blurs or complex shadows) */
-.glass {
-  background: #FFFFFF;
-  border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+  @variant dark {
+    background: rgba(26, 26, 46, 0.65);
+    border: 1px solid rgba(45, 45, 69, 0.52);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
 }
 
-.dark .glass {
-  background: #1A1A2E;
-  border-bottom: 1px solid rgba(45, 45, 69, 0.8);
+@utility hero-gradient {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary), var(--color-success), var(--color-primary));
+  background-size: 200% 200%;
+  animation: gradient-shift 10s ease infinite;
 }
 
-.glass-card {
-  background: #FFFFFF;
-  border: 1px solid rgba(229, 231, 235, 0.8);
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
-}
-
-.dark .glass-card {
-  background: #1A1A2E;
-  border: 1px solid rgba(45, 45, 69, 0.8);
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.animate-float-slow {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-medium {
-  animation: float 4.5s ease-in-out infinite;
-}
-
-.animate-float-fast {
-  animation: float 3s ease-in-out infinite;
+@utility text-gradient {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Syntax Highlighting for JSON formatter */
-.json-key { color: var(--primary); font-weight: bold; }
+.json-key { color: var(--color-primary); font-weight: 500; }
 .json-string { color: #10B981; }
-.json-number { color: #D97706; }
-.json-boolean { color: #7C3AED; }
-.json-null { color: #DC2626; }
+.json-number { color: #F59E0B; }
+.json-boolean { color: #8B5CF6; }
+.json-null { color: #EF4444; }
 
 /* Force bottom navigation to only show on mobile devices and hide on tablets / PCs */
-.only-mobile-nav {
+@utility only-mobile-nav {
   display: none !important;
-}
 
-@media (max-width: 767px) {
-  .only-mobile-nav {
+  @media (max-width: 767px) {
     display: flex !important;
   }
 }
 
 /* Prevent layout or height-transition flickering on budget mobile GPUs (e.g., Samsung Galaxy F05 in Chrome) */
-.hardware-accelerated-container {
-  will-change: opacity;
+@utility hardware-accelerated-container {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  will-change: transform, opacity, height;
 }
 
 
