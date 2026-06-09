@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'motion/react';
 import { Home, Grid, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -46,10 +45,8 @@ export const MobileBottomNav: React.FC = () => {
           Home
         </span>
         {isHome && (
-          <motion.div
-            layoutId="mobileNavActiveGroup"
-            className="absolute -top-1 w-8 h-1 bg-indigo-600 dark:bg-indigo-400 rounded-full"
-            transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+          <div
+            className="absolute -top-1 w-8 h-1 bg-indigo-600 dark:bg-indigo-400 rounded-full transition-all duration-200"
           />
         )}
       </Link>
@@ -73,10 +70,8 @@ export const MobileBottomNav: React.FC = () => {
           Tools
         </span>
         {isTools && (
-          <motion.div
-            layoutId="mobileNavActiveGroup"
-            className="absolute -top-1 w-8 h-1 bg-indigo-600 dark:bg-indigo-400 rounded-full"
-            transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+          <div
+            className="absolute -top-1 w-8 h-1 bg-indigo-600 dark:bg-indigo-400 rounded-full transition-all duration-300"
           />
         )}
       </Link>
@@ -88,17 +83,13 @@ export const MobileBottomNav: React.FC = () => {
         aria-label="Toggle Theme"
       >
         <div className="p-1 flex items-center justify-center text-slate-400 dark:text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
-          <motion.div
-            initial={false}
-            animate={{ rotate: theme === 'dark' ? 180 : 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-          >
+          <div className="transition-transform duration-300">
             {theme === 'dark' ? (
-              <Sun className="w-5 h-5 text-amber-500 stroke-[2.25]" />
+              <Sun className="w-5 h-5 text-amber-500 stroke-[2.25] rotate-0" />
             ) : (
-              <Moon className="w-5 h-5 text-indigo-600 stroke-[2.25]" />
+              <Moon className="w-5 h-5 text-indigo-600 stroke-[2.25] rotate-0" />
             )}
-          </motion.div>
+          </div>
         </div>
         <span className="text-[10px] font-poppins font-medium tracking-tight text-slate-400 dark:text-gray-500">
           {theme === 'dark' ? 'Light' : 'Dark'}

@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import { TOOLS } from '../utils/tools.config';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FileStack,
@@ -53,6 +54,7 @@ const getGradientStyle = (gradientStr: string) => {
 };
 
 export const Navbar: React.FC = () => {
+  const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   const [showToolsDropdown, setShowToolsDropdown] = useState(false);
   const location = useLocation();
@@ -189,11 +191,7 @@ export const Navbar: React.FC = () => {
                 Tools
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${showToolsDropdown ? 'rotate-180' : 'rotate-0'}`} />
                 {(location.pathname.startsWith('/tools/') || showToolsDropdown) && (
-                  <motion.div
-                    layoutId="activeNavIndicator"
-                    className="absolute bottom-0 left-1 right-1 h-0.5 bg-indigo-600 dark:bg-indigo-400 rounded-full"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
+                  <div className="absolute bottom-0 left-1 right-1 h-0.5 bg-indigo-600 dark:bg-indigo-400 rounded-full transition-all duration-300" />
                 )}
               </button>
 
@@ -267,11 +265,7 @@ export const Navbar: React.FC = () => {
             >
               About
               {isActive('/#about') && (
-                <motion.div
-                  layoutId="activeNavIndicator"
-                  className="absolute bottom-0 left-1 right-1 h-0.5 bg-indigo-600 dark:bg-indigo-400 rounded-full"
-                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                />
+                <div className="absolute bottom-0 left-1 right-1 h-0.5 bg-indigo-600 dark:bg-indigo-400 rounded-full transition-all duration-300" />
               )}
             </Link>
           </div>
@@ -295,83 +289,75 @@ export const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="lg:hidden overflow-hidden bg-surface border-b border-border/80 hardware-accelerated-container"
-          >
-            <div className="px-4 pt-2 pb-6 space-y-4 hardware-accelerated-container">
-              {/* Home & About Links on Mobile */}
-              <div className="grid grid-cols-2 gap-2">
-                <Link
-                  to="/"
-                  className={`py-2 px-3 text-center font-poppins font-semibold text-xs rounded-xl transition-all cursor-pointer border ${
-                    isActive('/')
-                      ? 'bg-indigo-50/70 border-indigo-100/80 text-indigo-600 dark:bg-indigo-950/40 dark:border-indigo-900/40 dark:text-indigo-400'
-                      : 'bg-slate-50/50 border-slate-100/50 hover:bg-slate-50 dark:bg-slate-800/20 dark:border-slate-800/50 text-slate-600 dark:text-slate-300'
-                  }`}
-                >
-                  Home
-                </Link>
-                <Link
-                  to="/#about"
-                  className={`py-2 px-3 text-center font-poppins font-semibold text-xs rounded-xl transition-all cursor-pointer border ${
-                    isActive('/#about')
-                      ? 'bg-indigo-50/70 border-indigo-100/80 text-indigo-600 dark:bg-indigo-950/40 dark:border-indigo-900/40 dark:text-indigo-400'
-                      : 'bg-slate-50/50 border-slate-100/50 hover:bg-slate-50 dark:bg-slate-800/20 dark:border-slate-800/50 text-slate-600 dark:text-slate-300'
-                  }`}
-                >
-                  About
-                </Link>
-              </div>
+      {isOpen && (
+        <div className="lg:hidden overflow-hidden bg-surface border-b border-border/80">
+          <div className="px-4 pt-2 pb-6 space-y-4">
+            {/* Home & About Links on Mobile */}
+            <div className="grid grid-cols-2 gap-2">
+              <Link
+                to="/"
+                className={`py-2 px-3 text-center font-poppins font-semibold text-xs rounded-xl transition-all cursor-pointer border ${
+                  isActive('/')
+                    ? 'bg-indigo-50/70 border-indigo-100/80 text-indigo-600 dark:bg-indigo-950/40 dark:border-indigo-900/40 dark:text-indigo-400'
+                    : 'bg-slate-50/50 border-slate-100/50 hover:bg-slate-50 dark:bg-slate-800/20 dark:border-slate-800/50 text-slate-600 dark:text-slate-300'
+                }`}
+              >
+                Home
+              </Link>
+              <Link
+                to="/#about"
+                className={`py-2 px-3 text-center font-poppins font-semibold text-xs rounded-xl transition-all cursor-pointer border ${
+                  isActive('/#about')
+                    ? 'bg-indigo-50/70 border-indigo-100/80 text-indigo-600 dark:bg-indigo-950/40 dark:border-indigo-900/40 dark:text-indigo-400'
+                    : 'bg-slate-50/50 border-slate-100/50 hover:bg-slate-50 dark:bg-slate-800/20 dark:border-slate-800/50 text-slate-600 dark:text-slate-300'
+                }`}
+              >
+                About
+              </Link>
+            </div>
 
-              {/* Tools Grid title */}
-              <div className="pt-2 border-t border-border/50 dark:border-[#2D2D45]/50">
-                <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
-                  <Sparkles className="w-3 h-3 text-indigo-500 animate-pulse" />
-                  Quick Access Tools Dashboard
-                </div>
-                
-                {/* 2-column matrix of mini-tools */}
-                <div className="grid grid-cols-2 gap-2 max-h-[300px] overflow-y-auto pr-1">
-                  {TOOLS.map((tool) => {
-                    const toolActive = location.pathname === tool.route;
-                    const ToolIcon = iconMap[tool.icon] || FileImage;
-                    return (
-                      <Link
-                        key={tool.id}
-                        to={tool.route}
-                        id={`mobile-tool-${tool.id}`}
-                        className={`group flex items-center gap-2 p-2 rounded-xl transition-all duration-200 border ${
-                          toolActive
-                            ? 'bg-indigo-50/80 dark:bg-indigo-950/30 border-indigo-200/60 dark:border-indigo-900/50 text-indigo-600 dark:text-indigo-400'
-                            : 'border-border/40 bg-background/50 dark:bg-[#121220]/60 dark:border-[#2C2C40] text-slate-700 dark:text-slate-300'
-                        }`}
+            {/* Tools Grid title */}
+            <div className="pt-2 border-t border-border/50 dark:border-[#2D2D45]/50">
+              <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+                <Sparkles className="w-3 h-3 text-indigo-500 animate-pulse" />
+                Quick Access Tools Dashboard
+              </div>
+              
+              {/* 2-column matrix of mini-tools */}
+              <div className="grid grid-cols-2 gap-2 max-h-[300px] overflow-y-auto pr-1">
+                {TOOLS.map((tool) => {
+                  const toolActive = location.pathname === tool.route;
+                  const ToolIcon = iconMap[tool.icon] || FileImage;
+                  return (
+                    <Link
+                      key={tool.id}
+                      to={tool.route}
+                      id={`mobile-tool-${tool.id}`}
+                      className={`group flex items-center gap-2 p-2 rounded-xl transition-all duration-200 border ${
+                        toolActive
+                          ? 'bg-indigo-50/80 dark:bg-indigo-950/30 border-indigo-200/60 dark:border-indigo-900/50 text-indigo-600 dark:text-indigo-400'
+                          : 'border-border/40 bg-background/50 dark:bg-[#121220]/60 dark:border-[#2C2C40] text-slate-700 dark:text-slate-300'
+                      }`}
+                    >
+                      <div 
+                        style={getGradientStyle(tool.gradient)}
+                        className="w-7 h-7 rounded-md flex items-center justify-center shadow-sm text-white flex-shrink-0"
                       >
-                        <div 
-                          style={getGradientStyle(tool.gradient)}
-                          className="w-7 h-7 rounded-md flex items-center justify-center shadow-sm text-white flex-shrink-0"
-                        >
-                          <ToolIcon className="w-4 h-4 text-white stroke-[2.2]" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h6 className="font-poppins font-semibold text-[11px] leading-tight truncate">
-                            {tool.name}
-                          </h6>
-                        </div>
-                      </Link>
-                    );
-                  })}
-                </div>
+                        <ToolIcon className="w-4 h-4 text-white stroke-[2.2]" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h6 className="font-poppins font-semibold text-[11px] leading-tight truncate">
+                          {tool.name}
+                        </h6>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

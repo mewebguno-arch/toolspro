@@ -2,9 +2,11 @@ import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useToastContext } from '../context/ToastContext';
 import { CheckCircle, AlertCircle, Info, X } from 'lucide-react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 export const Toast: React.FC = () => {
   const { toasts, removeToast } = useToastContext();
+  const isMobile = useIsMobile();
 
   return (
     <div 
@@ -28,11 +30,11 @@ export const Toast: React.FC = () => {
           return (
             <motion.div
               key={item.id}
-              layout
-              initial={{ opacity: 0, x: 50, scale: 0.9 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: 30, scale: 0.9 }}
-              transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+              layout={!isMobile}
+              initial={isMobile ? { opacity: 0, y: 20 } : { opacity: 0, x: 50, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+              exit={isMobile ? { opacity: 0, y: 15 } : { opacity: 0, x: 30, scale: 0.9 }}
+              transition={isMobile ? { duration: 0.2 } : { type: 'spring', stiffness: 350, damping: 25 }}
               className={`pointer-events-auto bg-surface dark:bg-[#1A1A2E] text-text-base flex items-start gap-3 p-4 rounded-xl shadow-xl border border-border/40 border-l-4 ${borderClass}`}
               role="alert"
             >
@@ -42,7 +44,7 @@ export const Toast: React.FC = () => {
               </div>
               <button
                 onClick={() => removeToast(item.id)}
-                className="flex-shrink-0 text-muted hover:text-text-base transition-colors rounded-lg p-0.5"
+                className="flex-shrink-0 text-muted hover:text-text-base transition-colors rounded-lg p-0.5 cursor-pointer"
                 aria-label="Dismiss notification"
               >
                 <X className="w-4 h-4" />

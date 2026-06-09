@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Sparkles, ArrowRight } from 'lucide-react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 export const Hero: React.FC = () => {
+  const isMobile = useIsMobile();
+
   const handleScrollToTools = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const element = document.getElementById('tools');
@@ -41,15 +44,71 @@ export const Hero: React.FC = () => {
     },
   };
 
+  // Simple static layout for mobile to ensure lightning fast load, zero resources waste, and no layout distortion
+  if (isMobile) {
+    return (
+      <section 
+        id="hero" 
+        className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden bg-background dark:bg-[#0F0F1A] text-text-base px-4 py-12 transition-colors duration-300"
+      >
+        <div className="relative max-w-4xl mx-auto text-center z-20">
+          <div className="space-y-6">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-1.5 bg-indigo-50 dark:bg-indigo-950/85 border border-indigo-200/50 dark:border-indigo-800/40 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase text-indigo-600 dark:text-indigo-300 font-poppins shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400 shrink-0" />
+              100% Client-Side Private Processing
+            </div>
+
+            {/* Heading */}
+            <h1 className="font-poppins font-extrabold text-3xl sm:text-4xl leading-tight tracking-tight text-text-base max-w-3xl mx-auto">
+              10 Powerful Tools, <br />
+              <span className="text-gradient">
+                Zero Install
+              </span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className="font-inter text-sm sm:text-base text-muted dark:text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+              Format, compress, convert, merge, and generate web data in micro-seconds. <strong className="font-semibold text-text-base font-inter">No servers. No registration.</strong> All tasks perform securely directly inside your browser cache.
+            </p>
+
+            {/* Buttons */}
+            <div className="flex flex-col gap-3 items-center justify-center pt-3">
+              <button
+                onClick={handleScrollToTools}
+                className="w-full font-poppins font-semibold text-sm py-3 px-6 rounded-xl bg-primary text-white hover:bg-opacity-95 transition-all flex items-center justify-center gap-2 group shadow-lg shadow-primary/10 cursor-pointer"
+                aria-label="Explore the online utility tools collection"
+              >
+                Explore Tools
+                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+              </button>
+              
+              <button
+                onClick={handleScrollToAbout}
+                className="w-full font-poppins font-medium text-sm py-3 px-6 rounded-xl border border-border dark:border-[#2D2D45] bg-surface dark:bg-[#1A1A2E] hover:bg-muted/10 transition-all flex items-center justify-center gap-2 cursor-pointer text-text-base"
+                aria-label="Learn about ToolKit Pro security and operations"
+              >
+                Learn More
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Elegant Curve Section Divider */}
+        <div className="absolute bottom-0 left-0 right-0 h-6 bg-background pointer-events-none" style={{ clipPath: 'polygon(100% 0, 0 100%, 100% 100%)' }} />
+      </section>
+    );
+  }
+
   return (
     <section 
       id="hero" 
       className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden bg-background dark:bg-[#0F0F1A] text-text-base px-4 py-20 transition-colors duration-300"
     >
-      {/* Frosted Glass Blur Blobs */}
-      <div className="absolute top-10 left-10 md:top-20 md:left-[15%] w-48 h-48 sm:w-72 sm:h-72 bg-[#6C63FF]/15 dark:bg-[#6C63FF]/10 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 md:bottom-20 md:right-[15%] w-60 h-60 sm:w-80 sm:h-80 bg-[#FF6584]/15 dark:bg-[#FF6584]/10 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none" />
-      <div className="absolute top-[35%] left-[45%] w-36 h-36 bg-[#10B981]/15 dark:bg-[#10B981]/10 rounded-full blur-[60px] pointer-events-none" />
+      {/* Frosted Glass Blur Blobs - Hidden on mobile to prevent graphics tearing */}
+      <div className="hidden md:block absolute top-10 left-10 md:top-20 md:left-[15%] w-48 h-48 sm:w-72 sm:h-72 bg-[#6C63FF]/15 dark:bg-[#6C63FF]/10 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none" />
+      <div className="hidden md:block absolute bottom-10 right-10 md:bottom-20 md:right-[15%] w-60 h-60 sm:w-80 sm:h-80 bg-[#FF6584]/15 dark:bg-[#FF6584]/10 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none" />
+      <div className="hidden md:block absolute top-[35%] left-[45%] w-36 h-36 bg-[#10B981]/15 dark:bg-[#10B981]/10 rounded-full blur-[60px] pointer-events-none" />
 
       {/* Floating Badges */}
       <div className="absolute inset-0 select-none overflow-hidden pointer-events-none z-10">
