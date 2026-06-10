@@ -50,32 +50,31 @@ export const ToolsGrid: React.FC = () => {
       </div>
 
       {/* Search & Filters Controls bar */}
-      <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-10 glass-card pr-4 pl-4 md:pl-6 py-4 rounded-2xl transition-all duration-300">
+      <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-10 bg-white/70 dark:bg-slate-800/75 backdrop-blur-md border border-slate-200/80 dark:border-slate-700/80 p-4 rounded-2xl shadow-sm transition-all duration-300">
         
         {/* Search Field */}
-        <div className="relative w-full md:w-80">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted dark:text-gray-400 w-4.5 h-4.5 pointer-events-none" />
+        <div className="w-full md:max-w-md relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 pointer-events-none" />
           <input
             type="text"
             placeholder="Search tools..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-background dark:bg-[#0F0F1A] border border-border dark:border-[#2D2D45] rounded-xl pl-10 pr-4 py-2.5 text-sm text-text-base placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all font-inter"
+            className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-850 text-sm focus:ring-2 focus:ring-indigo-500 transition-all outline-none shadow-sm dark:text-white"
             aria-label="Search available tools"
           />
         </div>
 
         {/* Category Pills */}
-        <div className="flex flex-wrap items-center justify-start gap-1.5 w-full md:w-auto">
-          <Filter className="w-4 h-4 text-muted dark:text-gray-400 mr-2 hidden lg:block" />
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 md:pb-0 mask-image-gradient w-full md:w-auto">
           {categories.map((cat) => (
             <button
               key={cat.key}
               onClick={() => setActiveCategory(cat.key)}
-              className={`px-4 py-2 rounded-xl font-poppins font-medium text-xs md:text-sm tracking-wide cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary transition-all ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
                 activeCategory === cat.key
-                  ? 'bg-primary text-white shadow-md shadow-primary/25'
-                  : 'bg-background dark:bg-[#0F0F1A] hover:bg-muted/10 text-text-base/80 hover:text-text-base dark:text-gray-300'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20 font-semibold'
+                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
               }`}
             >
               {cat.label}
@@ -86,7 +85,7 @@ export const ToolsGrid: React.FC = () => {
 
       {/* Grid of Cards */}
       {filteredTools.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-12">
           {filteredTools.map((tool, index) => (
             <ToolCard key={tool.id} tool={tool} index={index} />
           ))}

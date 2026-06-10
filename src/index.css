@@ -146,6 +146,20 @@
   }
 }
 
+/* Custom fade masks & scrollbar hides */
+@utility mask-image-gradient {
+  mask-image: linear-gradient(to right, black 82%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 82%, transparent 100%);
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none !important; /* Chrome, Safari and Opera */
+  }
+}
+
 /* Prevent layout or height-transition flickering on budget mobile GPUs (e.g., Samsung Galaxy F05 in Chrome) */
 @utility hardware-accelerated-container {
   -webkit-backface-visibility: hidden;

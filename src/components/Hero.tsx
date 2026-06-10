@@ -44,7 +44,7 @@ export const Hero: React.FC = () => {
   return (
     <section 
       id="hero" 
-      className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden bg-background dark:bg-[#0F0F1A] text-text-base px-4 py-20 transition-colors duration-300"
+      className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden bg-background dark:bg-[#0F0F1A] text-text-base px-4 py-16 md:py-24 transition-colors duration-300"
     >
       {/* Frosted Glass Blur Blobs */}
       <div className="absolute top-10 left-10 md:top-20 md:left-[15%] w-48 h-48 sm:w-72 sm:h-72 bg-[#6C63FF]/15 dark:bg-[#6C63FF]/10 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none" />
@@ -64,8 +64,8 @@ export const Hero: React.FC = () => {
         <div className="absolute bottom-[24%] right-[5%] md:right-[10%] lg:right-[14%] animate-float-medium hidden sm:flex items-center gap-3 bg-white/70 dark:bg-[#1A1A2E]/50 p-3.5 rounded-2xl shadow-xl border border-border/40 dark:border-[#2D2D45]/30 backdrop-blur-md" style={{ animationDelay: '-3s' }}>
           <div className="w-10 h-10 bg-amber-100 dark:bg-amber-950/40 rounded-xl flex items-center justify-center text-lg">🔑</div>
           <div className="text-left font-poppins">
-            <div className="text-xs font-bold text-text-base">Password Gen</div>
-            <div className="text-[10px] text-muted dark:text-gray-400">Secure locks</div>
+            <div className="text-xs font-bold text-text-base flex items-center gap-1">Password Gen</div>
+            <div className="text-[10px] text-muted dark:text-gray-400">Secure keys</div>
           </div>
         </div>
       </div>
@@ -86,23 +86,20 @@ export const Hero: React.FC = () => {
             100% Client-Side Private Processing
           </motion.div>
 
-          {/* Heading */}
+          {/* Heading with explicit request overrides */}
           <motion.h1 
             variants={itemVariants}
-            className="font-poppins font-extrabold text-4xl sm:text-5xl md:text-7xl leading-tight tracking-tight text-text-base max-w-3xl mx-auto"
+            className="font-poppins text-4xl md:text-6xl font-black tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:from-white dark:to-slate-300 max-w-3xl mx-auto leading-tight"
           >
-            10 Powerful Tools, <br />
-            <span className="text-gradient">
-              Zero Install
-            </span>
+            Explore Our Collection
           </motion.h1>
 
-          {/* Subtitle */}
+          {/* Subtitle with explicit request overrides */}
           <motion.p 
             variants={itemVariants}
-            className="font-inter text-base sm:text-lg md:text-xl text-muted dark:text-gray-300 max-w-2xl mx-auto font-light leading-relaxed"
+            className="font-inter text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mt-4 leading-relaxed"
           >
-            Format, compress, convert, merge, and generate web data in micro-seconds. <strong className="font-semibold text-text-base">No servers. No registration.</strong> All tasks perform securely directly inside your browser cache.
+            100% free, high-speed micro-apps that process all values locally for total privacy.
           </motion.p>
 
           {/* Buttons */}
@@ -122,7 +119,7 @@ export const Hero: React.FC = () => {
             <button
               onClick={handleScrollToAbout}
               className="w-full sm:w-auto font-poppins font-medium text-base py-3.5 px-8 rounded-xl border border-border dark:border-[#2D2D45] bg-surface/40 dark:bg-[#1A1A2E]/20 backdrop-blur-sm hover:bg-muted/10 transition-all flex items-center justify-center gap-2 cursor-pointer text-text-base"
-              aria-label="Learn about ToolKit Pro security and operations"
+              aria-label="Learn about WebGuno Tools security and operations"
             >
               Learn More
             </button>

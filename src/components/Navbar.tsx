@@ -119,41 +119,34 @@ export const Navbar: React.FC = () => {
   }, [location.hash, location.pathname]);
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-surface border-b border-border/80 transition-all duration-300">
+    <nav className="sticky top-0 z-50 w-full bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-700/80 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          {/* Logo */}
-          <Link 
-            to="/" 
-            className="flex items-center gap-2.5 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/50 rounded-xl px-2 py-1.5 transition-all duration-300"
-            aria-label="tools by webguno"
-          >
-            {/* Modern Tool Icon Logo matching the professional theme with high accessibility fallbacks */}
-            <div className="relative w-9 h-9 bg-[#6C63FF] dark:bg-[#7C74FF] bg-gradient-to-tr from-[#6C63FF] via-[#7C74FF] to-[#FF6584] rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-500/20 group-hover:scale-105 group-hover:rotate-12 transition-all duration-300 shrink-0">
-              <Wrench className="w-5 h-5 text-white stroke-[2.5px] fill-white/20 group-hover:fill-white/40 transition-all duration-300" />
-              {/* Soft subtle breathing glow with fallback bg */}
-              <div className="absolute -inset-0.5 bg-[#6C63FF] dark:bg-[#7C74FF] bg-gradient-to-tr from-[#6C63FF] to-[#FF6584] rounded-xl blur-sm opacity-20 group-hover:opacity-45 transition duration-300 z-[-1]" />
-            </div>
+        <div className="flex items-center justify-between h-16">
+          {/* Logo Left */}
+          <div className="flex-1 flex justify-start">
+            <Link 
+              to="/" 
+              className="flex items-center gap-2.5 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/50 rounded-xl px-2 py-1.5 transition-all duration-300"
+              aria-label="WebGuno Tools"
+            >
+              {/* Modern Tool Icon Logo matching the professional theme with high accessibility fallbacks */}
+              <div className="relative w-9 h-9 bg-indigo-600 dark:bg-indigo-500 bg-gradient-to-tr from-indigo-500 to-rose-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-500/20 group-hover:scale-105 group-hover:rotate-12 transition-all duration-300 shrink-0">
+                <Wrench className="w-5 h-5 text-white stroke-[2.5px] fill-white/20 group-hover:fill-white/40 transition-all duration-300" />
+                {/* Soft subtle breathing glow with fallback bg */}
+                <div className="absolute -inset-0.5 bg-indigo-500 to-rose-500 rounded-xl blur-sm opacity-20 group-hover:opacity-45 transition duration-300 z-[-1]" />
+              </div>
 
-            {/* Title rendered in Poppins font as requested */}
-            <div className="flex items-center select-none leading-none">
-              <span className="font-poppins font-extrabold text-lg tracking-tight text-zinc-800 dark:text-zinc-100 transition-all duration-300">
-                Tools by{' '}
-                <span className="inline-flex">
-                  <span className="text-[#4F46E5] dark:text-[#818CF8]">W</span>
-                  <span className="text-[#FF4D4D] dark:text-[#FF6B6B]">e</span>
-                  <span className="text-[#0ea5e9] dark:text-[#38bdf8]">b</span>
-                  <span className="text-[#10b981] dark:text-[#34d399]">G</span>
-                  <span className="text-[#f59e0b] dark:text-[#fbbf24]">u</span>
-                  <span className="text-[#ec4899] dark:text-[#f472b6]">n</span>
-                  <span className="text-[#a855f7] dark:text-[#c084fc]">o</span>
+              {/* Bold typography with a subtle gradient accent matching the primary color */}
+              <div className="flex items-center select-none leading-none">
+                <span className="font-poppins font-black text-lg tracking-tight text-slate-800 dark:text-white transition-all duration-300">
+                  WebGuno<span className="bg-gradient-to-r from-indigo-600 to-indigo-400 bg-clip-text text-transparent ml-1">Tools</span>
                 </span>
-              </span>
-            </div>
-          </Link>
+              </div>
+            </Link>
+          </div>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-6">
+          {/* Links Center */}
+          <div className="hidden lg:flex items-center justify-center gap-6">
             {/* Home Link */}
             <Link
               to="/"
@@ -276,20 +269,23 @@ export const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          <div className="hidden lg:flex items-center">
-            <ThemeToggle id="theme-toggle-desktop" />
-          </div>
+          {/* Controls Right */}
+          <div className="flex-1 flex justify-end items-center gap-3">
+            <div className="hidden lg:flex items-center">
+              <ThemeToggle id="theme-toggle-desktop" />
+            </div>
 
-          {/* Mobile hamburger & Toggle combo */}
-          <div className="hidden md:flex lg:hidden items-center gap-3">
-            <ThemeToggle id="theme-toggle-btn" />
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 dark:text-gray-300 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
-              aria-label="Toggle navigation menu"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            {/* Mobile Actions Hamburger */}
+            <div className="flex lg:hidden items-center gap-3">
+              <ThemeToggle id="theme-toggle-btn" />
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2 rounded-lg text-slate-600 hover:text-slate-950 dark:text-slate-305 dark:hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
+                aria-label="Toggle navigation menu"
+              >
+                {isOpen ? <X className="w-6 h-6 animate-none" /> : <Menu className="w-6 h-6 animate-none" />}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -302,7 +298,7 @@ export const Navbar: React.FC = () => {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="lg:hidden overflow-hidden bg-surface border-b border-border/80 hardware-accelerated-container"
+            className="lg:hidden overflow-hidden bg-white/95 dark:bg-slate-900/95 border-b border-slate-200/80 dark:border-slate-700/80 premium-backdrop shadow-lg hardware-accelerated-container"
           >
             <div className="px-4 pt-2 pb-6 space-y-4 hardware-accelerated-container">
               {/* Home & About Links on Mobile */}
@@ -330,7 +326,7 @@ export const Navbar: React.FC = () => {
               </div>
 
               {/* Tools Grid title */}
-              <div className="pt-2 border-t border-border/50 dark:border-[#2D2D45]/50">
+              <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800/60">
                 <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
                   <Sparkles className="w-3 h-3 text-indigo-500 animate-pulse" />
                   Quick Access Tools Dashboard
@@ -349,7 +345,7 @@ export const Navbar: React.FC = () => {
                         className={`group flex items-center gap-2 p-2 rounded-xl transition-all duration-200 border ${
                           toolActive
                             ? 'bg-indigo-50/80 dark:bg-indigo-950/30 border-indigo-200/60 dark:border-indigo-900/50 text-indigo-600 dark:text-indigo-400'
-                            : 'border-border/40 bg-background/50 dark:bg-[#121220]/60 dark:border-[#2C2C40] text-slate-700 dark:text-slate-300'
+                            : 'border-slate-200/40 bg-slate-50/50 dark:bg-slate-900/50 dark:border-slate-800 text-slate-700 dark:text-slate-300'
                         }`}
                       >
                         <div 
